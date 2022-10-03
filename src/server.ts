@@ -1,3 +1,4 @@
+import e from "express";
 import http from "http";
 
 const hostname = "127.0.0.1";
@@ -55,9 +56,7 @@ export class ProvaTesteComponent {
 
       this.listLivros.push(novoLivro);
     } else {
-      /**
-       * Monte a mensagem de erro avisando que já existe um Livro cadastrado sobre o nome e genero passados
-       */
+      console.log("[ERRO] Livro já cadastrado");
     }
   }
 
@@ -65,14 +64,22 @@ export class ProvaTesteComponent {
     let indiceLivro: number = -1;
     for (let index = 0; index < this.listLivros.length; index++) {
       const livro = this.listLivros[index];
-      /**
-       * Implemente a validação onde retorne o Indice do Livro caso encontre um com mesmo nome e genero
-       */
+      if (this.listLivros.includes(livro)) {
+        console.log(this.listLivros[index]);
+      }
     }
     return indiceLivro;
   }
 
-  listarLivrosFantasia(): string {
+  listarLivrosFantasia(genero) {
+    let array = this.listLivros;
+    if (genero === array["genero"]) {
+      const generos = array.map(function (a) {
+        return a.genero;
+      });
+      console.log(generos);
+    }
+
     /**
      * Retorne uma String contendo o nome de todos os Livros que são de fantasia.
      */
